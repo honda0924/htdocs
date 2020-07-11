@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!doctype html>
 <html lang="ja">
 <head>
@@ -17,17 +18,11 @@
 
 <main>
 <h2>Practice</h2>
-<form action="submit.php" method="post">
-  <p>ご予約希望日</p>
-  <p>
-    <input type="checkbox" name="reserve[]" value="1/1">1月1日<br>
-    <input type="checkbox" name="reserve[]" value="1/2">1月2日<br>
-    <input type="checkbox" name="reserve[]" value="1/3">1月3日<br>
-  </p>
-  <input type="submit" value="送信する">
-
-</form>
-
+<pre>
+<?php
+print($_SESSION['session_message']);
+?>
+</pre>
 </main>
-</body>
+</body>    
 </html>
