@@ -12,7 +12,7 @@
 </head>
 <body>
 <header>
-<h1 class="font-weight-normal">PHP</h1>    
+<h1 class="font-weight-normal">PHP</h1>
 </header>
 
 <main>
@@ -23,6 +23,11 @@ try{
   $db=new PDO('mysql:host=127.0.0.1:8889;dbname=mydb;charset=utf8','root','root');
 }catch(PDOException $e){
   echo 'DB接続エラー：　',$e->getMessage();
+}
+
+$records=$db->query('SELECT * FROM my_items');
+while ($record = $records->fetch()) {
+  print($record['item_name']."\n");
 }
 ?>
 </pre>
