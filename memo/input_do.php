@@ -17,26 +17,24 @@
 
 <main>
 <h2>Practice</h2>
+<pre>
 <?php
 try{
   $db=new PDO('mysql:host=127.0.0.1:8889;dbname=mydb;charset=utf8','root','root');
+  
+  $statement=$db->prepare('INSERT INTO memos SET memo=?,created_at=NOW()');
+  $statement->bindParam(1, $_POST['memo']);
+  // $statement->execute(array($_POST['memo']));
+  $statement->execute();
+  echo 'メッセージが登録されました';
+  // $db->exec('INSERT INTO memos SET memo="' .$_POST['memo'].'",created_at=NOW()');
 }catch(PDOException $e){
   echo 'DB接続エラー：　',$e->getMessage();
 }
 
 
-
-$memos=$db->query('SELECT * FROM memos ORDER BY id DESC');
 ?>
-<article>
-  <?php while($memo=$memos->fetch()): ?>
-    <p><a href="memo.php?id=<?php print($memo['id']); ?>"><?php print(mb_substr($memo['memo'],0,50));?></a></p>
-    <time><?php print($memo['created_at']); ?></time>
-    <hr>
-  <?php endwhile; ?>
-</article>
-  
-
+</pre>
 </main>
 </body>    
 </html>
